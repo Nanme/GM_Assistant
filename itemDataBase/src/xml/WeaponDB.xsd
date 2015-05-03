@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <!--Element Simple-->
+  <xsd:element name="name" type="xsd:string" />
+  <xsd:element name="crown" type="xsd:nonNegativeInteger" />
+  <xsd:element name="penny" type="xsd:nonNegativeInteger" />
+  <xsd:element name="schiling" type="xsd:nonNegativeInteger" />
+  <xsd:element name="dimension" type="xsd:nonNegativeInteger" />
+  <xsd:element name="weaponType" type="xsd:string" />
+  <xsd:element name="shortRange" type="xsd:nonNegativeInteger" />
+  <xsd:element name="longRange" type="xsd:nonNegativeInteger" />
+  <xsd:element name="attribute" type="xsd:string" />
+
+  <!--Damage with the boolean modificateur-->
+  <xsd:element name="damage">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:integer">
+          <xsd:attribute name="mod" type="xsd:boolean" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!--Rarity-->
+  <xsd:element name="rarity">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:integer">
+        <xsd:enumeration value="-3" />
+        <xsd:enumeration value="-2" />
+        <xsd:enumeration value="-1" />
+        <xsd:enumeration value="0" />
+        <xsd:enumeration value="1" />
+        <xsd:enumeration value="2" />
+        <xsd:enumeration value="3" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:element>
+  
+  <!--Weapon-->
+  <xsd:element name="weapon">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="name" />
+        <xsd:element ref="crown" />
+        <xsd:element ref="penny" />
+        <xsd:element ref="schiling" />
+        <xsd:element ref="dimension" />
+        <xsd:element ref="rarity" />
+        <xsd:element ref="weaponType" />
+        <xsd:element ref="damage" />
+        <xsd:element ref="shortRange" />
+        <xsd:element ref="longRange" />
+        <xsd:element ref="attribute" />
+      </xsd:sequence>
+      <xsd:attribute name="code" type="xsd:ID" use="required" />
+    </xsd:complexType>
+  </xsd:element>
+
+  <!--WeaponDB-->
+  <xsd:element name="weaponDB">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="weapon" maxOccurs="unbounded" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

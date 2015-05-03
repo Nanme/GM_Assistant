@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!--Simple Element-->
+  <xsd:element name="name" type="xsd:string" />
+  <xsd:element name="crown" type="xsd:nonNegativeInteger" />
+  <xsd:element name="penny" type="xsd:nonNegativeInteger" />
+  <xsd:element name="schiling" type="xsd:nonNegativeInteger" />
+  <xsd:element name="dimension" type="xsd:nonNegativeInteger" />
+  <xsd:element name="rarity" type="xsd:string" />
+
+  <!--Armor Point with Area in attribute-->
+  <xsd:element name="armorPoint">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:nonNegativeInteger">
+          <xsd:attribute name="area">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:nonNegativeInteger">
+                <xsd:enumeration value="0" />
+                <xsd:enumeration value="1" />
+                <xsd:enumeration value="2" />
+                <xsd:enumeration value="3" />
+                <xsd:enumeration value="4" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:attribute>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!--Malus Value with type in attirbute-->
+  <xsd:element name="malus">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:nonNegativeInteger">
+          <xsd:attribute name="type">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:nonNegativeInteger">
+                <xsd:enumeration value='0' />
+                <xsd:enumeration value='1' />
+                <xsd:enumeration value='2' />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:attribute>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!--Armor-->
+  <xsd:element name="armor">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="name" />
+        <xsd:element ref="crown" />
+        <xsd:element ref="penny" />
+        <xsd:element ref="schiling" />
+        <xsd:element ref="dimension" />
+        <xsd:element ref="rarity" />
+        <xsd:element ref="armorPoint" />
+        <xsd:element ref="malus" />
+      </xsd:sequence>
+      <xsd:attribute name="code" type="xsd:ID" />
+    </xsd:complexType>
+  </xsd:element>
+
+  <!--armorDB-->
+  <xsd:element name="armorDB">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="armor" maxOccurs="unbounded" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
